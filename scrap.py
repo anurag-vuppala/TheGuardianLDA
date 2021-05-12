@@ -18,7 +18,7 @@ import pandas as pd
 #  len(bsobj.findAll('p',{'class':'gs-c-promo-summary gel-long-primer gs-u-mt nw-c-promo-summary'})))
 ########################################################################################################################################################################
 bcc_url = "https://www.theguardian.com/uk"
-print(bcc_url)
+# print(bcc_url)
 
 
 html = requests.get(bcc_url)
@@ -29,22 +29,23 @@ soup = BeautifulSoup(html.content,'html.parser')
 links = []
 for head in soup.findAll('div',{'class': 'fc-item__container'}):
     links.append(head.a['href'])
-print(len(links))
+# print(len(links))
 news = []
 headline = []
+linkdata = []
 for link in links:
 	html1 = requests.get(link)
 	soup1 = BeautifulSoup(html1.content,'html.parser')
 	for head in soup1.findAll('main',{'class':'css-1kiwfxx'} , 'h1' ):
 		headline.append(soup1.h1.text)
 		news.append(head.get_text())
-
+		linkdata.append(link)
 		
 
 	
-print(len(headline),len(news),len(links))
+print(f'number of headline{len(headline)},news{len(news)},links{len(linkdata)}')
 
-data = pd.DataFrame({'headline': headline,'news':news})
+data = pd.DataFrame({'Headline': headline,'News':news,'Links':linkdata})
 
 print(data)
 
