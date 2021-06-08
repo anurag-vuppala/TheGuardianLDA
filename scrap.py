@@ -2,6 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 from datetime import date
 import pandas as pd
+import sqlite3 as sql
+# from createdatabase import Data_handle
 ########################################################################################################################################################################
 '''WrongCode'''
 # print(bsobj.prettify())
@@ -27,7 +29,7 @@ soup = BeautifulSoup(html.content,'html.parser')
 
 
 links = []
-for head in soup.findAll('div',{'class': 'fc-item__container'}):
+for head in soup.findAll('div',{'class': 'fc-item__container'}):  
     links.append(head.a['href'])
 # print(len(links))
 news = []
@@ -50,6 +52,8 @@ data = pd.DataFrame({'Headline': headline,'News':news,'Links':linkdata})
 print(data)
 
 
+conn = sql.connect('Guardian.db')
+data.to_sql('newstable', conn)
 
 
 
