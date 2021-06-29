@@ -5,7 +5,7 @@ import pandas as pd
 import sqlite3 as sql
 # from createdatabase import Data_handle
 ########################################################################################################################################################################
-# '''WrongCode'''
+'''WrongCode'''
 # print(bsobj.prettify())
 # print(bsobj.prettify())
 # for news in bsobj.findAll('h1'):
@@ -52,8 +52,8 @@ data = pd.DataFrame({'Headline': headline,'News':news,'Links':linkdata})
 print(data)
 
 
-# conn = sql.connect('Guardian.db')
-# data.to_sql('newstable', conn)
+conn = sql.connect('Guardian.db')
+data.to_sql('newstable', conn)
 
 
 

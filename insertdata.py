@@ -4,11 +4,12 @@ import sqlite3 as sql
 # data = pd.read_pickle('data.pickle')
 # # print(data)
 
-
+count=0
 conn = sql.connect('Guardian.db')
-dataset = conn.execute(f"select * from newstable")
-print(dataset)
-
+for row in conn.execute(f"select * from newstable"):
+			print(row)
+			count=count+1		
+print(count)
 # a = cur.execute("""select * from album""")
 
 '''
